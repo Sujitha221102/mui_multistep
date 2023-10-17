@@ -45,12 +45,18 @@ const reducer = (state, action) => {
 };
 export const AppProvider = ({ children }) => {
   const [toggle, setToggle] = useState(false);
+  const [selectedButton, setSelectedButton] = useState("Arcade");
+  const [selectedCheckbox, setSelectedCheckbox] = useState([]);
   const [state, dispatch] = useReducer(reducer, initialState);
   const contextValue = {
     state,
     dispatch,
     toggle,
-    setToggle
+    setToggle,
+    selectedButton,
+    setSelectedButton,
+    selectedCheckbox,
+    setSelectedCheckbox
   };
 
   return (

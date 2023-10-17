@@ -8,8 +8,12 @@ const FirstPage = ({ handleNext, activeStep }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phn, setPhn] = useState("");
-  const [warn,setWarn]=useState(false)
-  const [errors, setErrors] = useState({ name: false, email: false, phn: false });
+  const [warn, setWarn] = useState(false);
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    phn: false,
+  });
 
   const input = (value) => value.trim() === "";
 
@@ -25,23 +29,26 @@ const FirstPage = ({ handleNext, activeStep }) => {
     });
 
     if (!nameError && !emailError && !phnError) {
-     handleNext();
+      handleNext();
     } else {
-      setWarn(true)
+      setWarn(true);
     }
   };
-const handleClose = (reason) => {
-  if (reason === "clickaway") {
-    return;
-  }
-  setWarn(false)
-};
+  const handleClose = (reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setWarn(false);
+  };
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Typography variant="h5" sx={{ color: "#11347a", fontWeight: "bold" }}>
+      <Typography
+        variant="h5"
+        sx={{ color: "#11347a", fontWeight: "bold", fontFamily: "ubuntu" }}
+      >
         Personal info
       </Typography>
-      <Typography sx={{ color: "gray" }}>
+      <Typography sx={{ color: "gray", fontFamily: "ubuntu" }}>
         Please provide your name, email address, and phone number.
       </Typography>
       <Box sx={{ color: "#11347a" }}>
@@ -61,15 +68,12 @@ const handleClose = (reason) => {
           onBlur={(e) => setErrors({ ...errors, phn: input(e.target.value) })}
         />
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "row", pt: 2, marginTop: 15 }}>
-        <Button color="inherit" disabled={activeStep === 0} sx={{ mr: 1 }}>
-          Go Back
-        </Button>
-        <Box sx={{ flex: "1 1 auto" }} />
+      <Box sx={{ display: "flex", flexDirection: "row", pt: 2, marginTop: 11 }}>
+        <Box sx={{ flex: "1 1 auto", fontFamily: "ubuntu" }} />
         <Button
           variant="contained"
           onClick={handleNextClick}
-          sx={{ mr: 1 }}
+          sx={{ mr: 1, fontFamily: "ubuntu", backgroundColor: "#11347a" }}
           disabled={errors.name || errors.email || errors.phn}
         >
           Next Step

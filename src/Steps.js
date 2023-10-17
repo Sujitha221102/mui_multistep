@@ -18,7 +18,15 @@ const steps = [
   { step: "SUMMARY", stepNum: "STEP 4" },
 ];
 
-export default function HorizontalNonLinearStepper() {
+const stepStyle = {
+  "& .Mui-active": {
+    "&.MuiStepIcon-root": {
+      color: "#b3ccf5",
+      fontSize:30
+    },
+  },
+};
+export default function Steps() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const totalSteps = () => {
@@ -48,6 +56,7 @@ export default function HorizontalNonLinearStepper() {
     <Box
       sx={{
         width: "100%",
+        height:550,
         display: "flex",
         justifyContent: "flex-start",
         m: 2,
@@ -57,10 +66,12 @@ export default function HorizontalNonLinearStepper() {
         nonLinear
         activeStep={activeStep}
         sx={{
+          ...stepStyle,
           height: 300,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-evenly",
+          fontFamily: "ubuntu",
         }}
       >
         {steps.map((label, index) => (
@@ -68,27 +79,33 @@ export default function HorizontalNonLinearStepper() {
             <StepButton
               onClick={handleStep(index)}
               sx={{
+                borderColor: "#fafafa",
                 width: 150,
                 display: "flex",
                 justifyContent: "flex-start",
                 textAlign: "start",
               }}
             >
-              <Typography sx={{ color: "white" }}>{label.stepNum}</Typography>
-              <Typography sx={{ color: "white", fontWeight: "bold" }}>
+              <Typography sx={{ color: "white", fontFamily: "ubuntu" }}>
+                {label.stepNum}
+              </Typography>
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontFamily: "ubuntu",
+                }}
+              >
                 {label.step}
               </Typography>
             </StepButton>
           </Step>
         ))}
       </Stepper>
-      <Box sx={{ marginLeft: 25 }}>
+      <Box sx={{ marginLeft: 22 }}>
         <React.Fragment>
           {activeStep === 0 ? (
-            <FirstPage
-              activeStep={activeStep}
-              handleNext={handleNext}
-            />
+            <FirstPage activeStep={activeStep} handleNext={handleNext} />
           ) : (
             ""
           )}
